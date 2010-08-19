@@ -11,8 +11,7 @@ class Blog < ActiveRecord::Base
   acts_as_indexed :fields => [:title, :permalink, :excerpt, :body],
                   :index_file => [Rails.root.to_s, "tmp", "index"]
 
-  validates_presence_of :excerpt, :body
-  validates_uniqueness_of :title, :permalink, :case_sensitive => true
+  validates_uniqueness_of :permalink, :case_sensitive => true
 
   validates_format_of :permalink, :with => /^(([-_]|[a-z]|\d){1,100})$/, :message => " is invalid, only lowercase alphanumeric character and _-"
   validates_length_of :permalink, :within => 4..99
